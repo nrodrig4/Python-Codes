@@ -6,12 +6,12 @@ Created on Sep 17, 2017
 
 import mysql.connector
 
-def createNewTable(db):
+def createNewTable(usr,passwrd, hst, db):
     try:
         con = mysql.connector.connect(
-            user = "root",
-            password = "Baseball13#",
-            host = "localhost", 
+            user = usr,
+            password = passwrd,
+            host = hst, 
             database = db                         
             )
     except mysql.connector.Error as e:
@@ -32,12 +32,15 @@ def createNewTable(db):
 #     print(tableCreate) 
     c.execute(tableCreate)
     return
+usr = raw_input("Enter user name: ")
+psswrd = raw_input("Enter Password: ")
+hst = raw_input("Enter Host: ") 
 
 try:
     con = mysql.connector.connect(
-        user = "root",
-        password = "Baseball13#",
-        host = "localhost"                          
+        user = usr,
+        password = psswrd,
+        host = hst                          
         )
 except mysql.connector.Error as e:
     print(e)
@@ -56,7 +59,7 @@ con.close()
 createTable = raw_input("Would you like to create a new table? (y/n): ")
 isInputValid = None
 if (createTable == "y") or (createTable == "Y"):
-    createNewTable(db)
+    createNewTable(usr,psswrd,hst,db)
     isInputValid = True 
     print("Table created")
 elif    (createTable == "n") or (createTable == "N"): 
@@ -71,7 +74,7 @@ while isInputValid == None:
         createTable = raw_input("Would you like to create a new table? (y/n): ")
         isInputValid = None
         if (createTable == "y") or (createTable == "Y"):
-            createNewTable(db)
+            createNewTable(usr,psswrd,hst,db)
             isInputValid = True 
             print("Table created!")
         elif    (createTable == "n") or (createTable == "N"): 

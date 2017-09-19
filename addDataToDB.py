@@ -7,11 +7,14 @@ import mysql.connector
 
 
 #looking up databases
+usr = raw_input("Enter user name: ")
+psswrd = raw_input("Enter Password: ")
+hst = raw_input("Enter Host: ") 
 try: 
     con = mysql.connector.connect(
-        user = "root",
-        password = "Baseball13#",
-        host = "localhost")
+        user = usr,
+        password = psswrd,
+        host = hst)
 except mysql.connector.Error as e:    
     print(e)
 c = con.cursor()    
@@ -30,9 +33,9 @@ con.close()
 
 try: 
     con = mysql.connector.connect(
-    user = "root",
-    password = "Baseball13#",
-    host = "localhost",
+    user = usr,
+    password = psswrd,
+    host = hst,
     database = db)
 except mysql.connector.Error as e:    
     print(e)
@@ -79,7 +82,7 @@ print(vals)
 
 columns = columnNames.replace(" ", ",")
 columns = columns[:-1]
-print("Update table values:")
+print("Update table values: (type 'DONE' when finished)")
 print("("+columns +")")
 updatedValues = raw_input("")
 parsedValues = updatedValues.split(",")
